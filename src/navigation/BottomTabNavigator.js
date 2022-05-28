@@ -18,14 +18,18 @@ const settingName = 'Settings';
 
 const Tab = createBottomTabNavigator(); 
 
-export default function BottomTabNavigator() {
+const BottomTabNavigator = () => {
     return (
         <Tab.Navigator tabBarOptions={{
             // style: styles.tabBar,
+            style: {
+                backgroundColor: "#0D0F22", 
+                height: 87
+            },
             activeTintColor: Colors.white,
             inactiveTintColor: Colors.dark,
             showLabel: false
-          }} 
+          }}
           screenOptions={{headerShown: false}}
           >
             <Tab.Screen name = {homeName} component={HomeScreen} options={{
@@ -55,3 +59,4 @@ export default function BottomTabNavigator() {
     );
 }
 
+export default BottomTabNavigator;

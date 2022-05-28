@@ -1,19 +1,33 @@
-import react, {useState} from "react";
+import react, {useState, useEffect} from "react";
 import {View, Text, SafeAreaView,
         TextInput,
         StyleSheet,
         TouchableOpacity, 
-        ScrollView
+        ScrollView, FlatList
     } from 'react-native'; 
 
 
+import ListItem from '../components/ListItem';
+
 //icons
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { getMarketData } from "../crypto/services";
 
 
 const SearchScreen = ({navigation}) => {
 
     const [isPressed, setIsPressed] = useState(false);
+    const [data, setData] = useState([]); 
+    
+    useEffect (() => {
+        const fetchMarketData = async () => {
+            const marketData = await getMarketData(); 
+            setData(marketData);
+        }
+
+        fetchMarketData(); 
+    }, []); 
+
 
     return (
         <SafeAreaView style = {styles.container}>
@@ -44,6 +58,23 @@ const SearchScreen = ({navigation}) => {
                 {isPressed ? (
                     <View style={styles.currenciesView}>
                         <Text style={styles.today}>Today</Text>
+                        <SafeAreaView> 
+                            <FlatList 
+                                keyExtractor={(item) => item.id}
+                                data = {data}
+                                renderItem={({item}) => (
+                                    <ListItem 
+                                        name = {item.name}
+                                        symbol = {item.symbol}
+                                        currentPrice = {item.current_price}
+                                        priceChangePercentage7d = {item.price_change_percentage_7d_in_currency}
+                                        logoUrl = {item.image}
+                                    />
+                                )}
+                            />
+                        </SafeAreaView>
+                        
+
                     </View>
                 ) : (
                     <ScrollView>
@@ -58,6 +89,7 @@ const SearchScreen = ({navigation}) => {
 const styles = StyleSheet.create ({
     container: {
         backgroundColor: "#171930",
+        //backgroundColor: "#000000",
         flex: 1,
     }, 
 
@@ -98,7 +130,6 @@ const styles = StyleSheet.create ({
       }, 
 
       currenciesView: {
-          marginLeft: 20, 
           marginTop: 25, 
 
       },
@@ -107,6 +138,7 @@ const styles = StyleSheet.create ({
           fontWeight: '700', 
           fontSize: 15,
           color: "#ffffff",
+          paddingHorizontal: 20,
       }
 
 })
