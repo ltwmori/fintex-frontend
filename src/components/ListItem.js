@@ -1,64 +1,81 @@
-import React from 'react'
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import React from 'react';
+import {View, Text, TouchableOpacity
+      , StyleSheet, 
+      Image, 
+} from 'react-native'; 
 
-const ListItem = ({ name, symbol, currentPrice, priceChangePercentage7d, logoUrl, onPress }) => {
-  const priceChangeColor = priceChangePercentage7d > 0 ? '#34C759' : '#FF3B30';
+
+import Ionicons from '@expo/vector-icons/Ionicons';
+
+const ListItem = ({name, symbol, currentPrice, priceChangePercentage7d, logoUrl}) => {
+  const priceChangeColor = priceChangePercentage7d > 0 ? "green" : "red";
 
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity>
       <View style={styles.itemWrapper}>
-        
         {/* Left side */}
         <View style={styles.leftWrapper}>
-          <Image source={{ uri: logoUrl }} style={styles.image} />
+          <Image source={{url: logoUrl}} style={styles.image}/>
           <View style={styles.titlesWrapper}>
-            <Text style={styles.title}>{ name}</Text>
+            <Text style={styles.title}>{name}</Text>
             <Text style={styles.subtitle}>{symbol.toUpperCase()}</Text>
           </View>
         </View>
 
-        
         {/* Right side */}
         <View style={styles.rightWrapper}>
-          <Text style={styles.title}>${currentPrice.toLocaleString('en-US', { currency: 'USD' })}</Text>
-          <Text style={[styles.subtitle, {color: priceChangeColor}]}>{priceChangePercentage7d.toFixed(2)}%</Text>
+          <View style={styles.textBox}>
+            <Text style={styles.title}>${currentPrice.toLocaleString('en-US', { currency: 'USD' })}</Text>
+            <Text style={[styles.subtitle, {color: priceChangeColor}]}>{priceChangePercentage7d.toFixed(2)}%</Text>
+          </View>
+          <Ionicons name={"chevron-forward-outline"} size={25} style={{color: "white"}}/>
         </View>
-
       </View>
     </TouchableOpacity>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   itemWrapper: {
-    paddingHorizontal: 16,
-    marginTop: 24,
+    paddingHorizontal: 20,
+    marginTop: 12, 
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: 'center',
-  },
+    alignItems: "center",
+    backgroundColor: "#1E203B",
+    borderRadius: 11,
+    height: 60,
+  }, 
   leftWrapper: {
-    flexDirection: "row",
-    alignItems: 'center',
+    flexDirection: "row", 
+    alignItems: "center",
   },
   image: {
-    height: 48,
-    width: 48,
+    width: 38, 
+    height: 38,
+  }, 
+  rightWrapper: {
+    flexDirection: "row",
+    alignItems: "center", 
+
   },
   titlesWrapper: {
-    marginLeft: 8,
+    marginLeft: 13,
+  }, 
+  textBox: {
+    alignItems: "flex-end",
+    paddingHorizontal: 12
   },
   title: {
-    fontSize: 18,
+    fontSize: 13,
+    color: "#ffffff",
+    
   },
   subtitle: {
     marginTop: 4,
-    fontSize: 14,
-    color: "#A9ABB1",
-  },
-  rightWrapper: {
-    alignItems: 'flex-end',
-  },
+    fontSize: 10,
+    color: "gray",
+  }, 
 })
 
-export default ListItem
+export default ListItem; 
