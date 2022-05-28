@@ -1,32 +1,14 @@
-import react from "react";
-import {View, Text} from 'react-native'; 
-import ListItem from '../components/ListItem';
+import react, {useState, useEffect} from "react";
+import { StyleSheet, View, Text, SafeAreaView, FlatList, ListHeader} from 'react-native'; 
+import ListItem  from '../components/ListItem';
 import { getMarketData } from '../crypto/services';
 
 const HomeScreen = ({navigation}) => {
+    
     return (
         <View>
-            <Text>Home Screen</Text>
-        
-
-        <SafeAreaView style={styles.container}>
-        <FlatList
-        keyExtractor={(item) => item.id}
-        data={data}
-        renderItem={({ item }) => (
-            <ListItem
-            name={item.name}
-            symbol={item.symbol}
-            currentPrice={item.current_price}
-            priceChangePercentage7d={item.price_change_percentage_7d_in_currency}
-            logoUrl={item.image}
-            onPress={() => openModal(item)}
-            />
-        )}
-        ListHeaderComponent={<ListHeader />}
-        />
-        </SafeAreaView>
-</View>
+          <Text>Home Screen</Text>
+        </View>
 
     );
 }

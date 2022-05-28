@@ -25,7 +25,8 @@ export default function BottomTabNavigator() {
             activeTintColor: Colors.white,
             inactiveTintColor: Colors.dark,
             showLabel: false
-          }}
+          }} 
+          screenOptions={{headerShown: false}}
           >
             <Tab.Screen name = {homeName} component={HomeScreen} options={{
                 tabBarIcon: ({ focused }) => (
