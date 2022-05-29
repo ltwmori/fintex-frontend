@@ -9,6 +9,7 @@ import HomeScreen from '../screens/HomeScreen';
 import SettingsScreen from '../screens/SettingsScreen'; 
 import SearchScreen from '../screens/SearchScreen'; 
 
+
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Colors } from "react-native/Libraries/NewAppScreen";
 
@@ -32,15 +33,15 @@ const BottomTabNavigator = () => {
           }}
           screenOptions={{headerShown: false}}
           >
-            <Tab.Screen name = {homeName} component={HomeScreen} options={{
+            {/* <Tab.Screen name = {homeName} component={HomeScreen} options={{
                 tabBarIcon: ({ focused }) => (
                     <View>
                         <Ionicons name = "home" size={30} style={{tintColor: focused ? Colors.white : Colors.dark}}/>
                     </View>
                   ),
-            }} />
+            }} /> */}
 
-            <Tab.Screen name = {seachName} component={SearchScreen} options={{
+            <Tab.Screen name = "SearchScreen" component={SearchScreen} options={{
                 tabBarIcon: ({ focused }) => (
                     <View>
                         <Ionicons name = "search" size={30} style={{tintColor: focused ? Colors.white : Colors.dark}}/>

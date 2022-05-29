@@ -1,34 +1,35 @@
 import react, {useState, useEffect} from "react";
 import { View, Text, SafeAreaView,
-    StyleSheet, TouchableOpacity
+    StyleSheet, TouchableOpacity, Image
 } from "react-native";
 
 import Ionicons from '@expo/vector-icons/Ionicons';
+import SearchScreen from "./SearchScreen";
 
-const CointDetailsScreen = () => {
-
-    const [data, setData] = useState([]); 
+const CoinDetailsScreen = ({navigation, route}) => {
+    //const item = route.params.item;
+    // const [data, setData] = useState([]); 
     
-    useEffect (() => {
-        const fetchMarketData = async () => {
-            const marketData = await getMarketData(); 
-            setData(marketData);
-        }
+    // useEffect (() => {
+    //     const fetchMarketData = async () => {
+    //         const marketData = await getMarketData(); 
+    //         setData(marketData);
+    //     }
 
-        fetchMarketData(); 
-    }, []); 
+    //     fetchMarketData(); 
+    // }, []); 
 
     
 
     return (
         <SafeAreaView style = {styles.container}>
             <View style={styles.header}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate(SearchScreen)}>
                     <Ionicons name="arrow-back-outline" size={30} color="white"/> 
                 </TouchableOpacity>
                 <View style={styles.textWrapper}> 
-                    <Text style={{color: "white", fontSize: 18, fontWeight: '700'}}>AAPL</Text>
-                    <Text style={{color: "white", fontSize: 12, fontWeight: '600'}}>Apple Inc</Text>
+                    <Text style={{color: "white", fontSize: 18, fontWeight: '700'}}>Bitcoin</Text>
+                    <Text style={{color: "white", fontSize: 12, fontWeight: '600'}}>BTC</Text>
                 </View>
 
                 <TouchableOpacity>
@@ -37,9 +38,18 @@ const CointDetailsScreen = () => {
             </View>
 
             <View style={styles.priceView}>
-                <Text style={{color: "white", fontSize: 28, fontWeight: '700'}}>$131.93</Text>
-                <Text style={{color: "green", fontSize: 12, fontWeight: '600', marginTop: 8}}>+$0.12 (1,15%)</Text>
+                <Text style={{color: "white", fontSize: 28, fontWeight: '700'}}>$29,403</Text>
+                <Text style={{color: "red", fontSize: 12, fontWeight: '600', marginTop: 8}}>-0.30%</Text>
             </View>
+
+            <View style={styles.chart}>
+                <Image style = {styles.image} source={require("../assets/images/Vector8.png")}/> 
+            </View>
+
+            <TouchableOpacity style={styles.bottom} onPress={() => alert('')}>
+                <Text style={{color: "white", fontWeight: '500', fontSize: 12 }}>Make a prediction</Text>
+            </TouchableOpacity>
+            
         </SafeAreaView>
     );
 }
@@ -64,7 +74,28 @@ const styles = StyleSheet.create({
         alignItems: "center", 
         justifyContent: "center",
         marginTop: 36,
+    }, 
+
+    bottom: {
+        backgroundColor: "#266ED7",
+        height: 52,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 30,
+        borderRadius: 8,
+        marginLeft: 20,
+        marginRight: 20,
+    }, 
+    chart: {
+        marginLeft: 20,
+        marginRight: 20,
+        paddingHorizontal: 20,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 40,
+        backgroundColor: "#1E203B",
+        height: 235,
     }
 })
 
-export default CointDetailsScreen; 
+export default CoinDetailsScreen; 
