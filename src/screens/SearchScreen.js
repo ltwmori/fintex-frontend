@@ -12,11 +12,12 @@ import ListItem from '../components/ListItem';
 //icons
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { getMarketData } from "../crypto/services";
+import CoinDetailsScreen from "./CoinDetailsScreen";
 
 
 const SearchScreen = ({navigation}) => {
 
-    const [isPressed, setIsPressed] = useState(false);
+    const [isPressed, setIsPressed] = useState(true);
     const [data, setData] = useState([]); 
     
     useEffect (() => {
@@ -63,12 +64,15 @@ const SearchScreen = ({navigation}) => {
                                 keyExtractor={(item) => item.id}
                                 data = {data}
                                 renderItem={({item}) => (
+                                    
                                     <ListItem 
                                         name = {item.name}
                                         symbol = {item.symbol}
                                         currentPrice = {item.current_price}
                                         priceChangePercentage7d = {item.price_change_percentage_7d_in_currency}
                                         logoUrl = {item.image}
+                                        onPress = {() => navigation.navigate(CoinDetailsScreen)}
+                                        //'CoinDetailsScreen', {item}
                                     />
                                 )}
                             />

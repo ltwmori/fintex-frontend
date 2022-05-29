@@ -7,11 +7,11 @@ import {View, Text, TouchableOpacity
 
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-const ListItem = ({name, symbol, currentPrice, priceChangePercentage7d, logoUrl}) => {
+const ListItem = ({name, symbol, currentPrice, priceChangePercentage7d, logoUrl, onPress}) => {
   const priceChangeColor = priceChangePercentage7d > 0 ? "green" : "red";
 
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onPress}>
       <View style={styles.itemWrapper}>
         {/* Left side */}
         <View style={styles.leftWrapper}>
