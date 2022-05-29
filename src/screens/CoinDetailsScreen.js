@@ -18,6 +18,8 @@ const CointDetailsScreen = () => {
         fetchMarketData(); 
     }, []); 
 
+    
+
     return (
         <SafeAreaView style = {styles.container}>
             <View style={styles.header}>

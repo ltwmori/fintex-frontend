@@ -9,11 +9,10 @@ import {
 } from 'react-native';
 //import Spinner from 'react-native-loading-spinner-overlay';
 import {AuthContext} from '../context/AuthContext';
-import HomeScreen from './HomeScreen';
-import MainStack from '../navigation/MainStack';
 
 const Login = ({navigation}) => {
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   //const {isLoading, login} = useContext(AuthContext);
 
@@ -21,7 +20,7 @@ const Login = ({navigation}) => {
     <View style={styles.container}>
       <View style={styles.h1}>
         <Text style={styles.h1Text}>
-          Login to fintex
+          Register
         </Text>
       </View>
       {/* <Spinner visible={isLoading} /> */}
@@ -34,6 +33,13 @@ const Login = ({navigation}) => {
           placeholder="Enter username"
           onChangeText={text => setUsername(text)}
         />
+        <TextInput
+          style={styles.input}
+          placeholderTextColor="gray"
+          value={username}
+          placeholder="Enter email"
+          onChangeText={text => setUsername(text)}
+        />
         {/* <Text style={styles.usr}>Password</Text> */}
         <TextInput
           style={styles.input}
@@ -44,15 +50,15 @@ const Login = ({navigation}) => {
           secureTextEntry
         />
 
-        <TouchableOpacity style={styles.log} onPress={() => navigation.navigate('MainStack')}>
-          <Text style={{fontWeight: '500', color: 'white', fontSize: 12,}}>Login</Text>
+        <TouchableOpacity style={styles.log}>
+          <Text style={{fontWeight: '500', color: 'white', fontSize: 12,}}>Register</Text>
         </TouchableOpacity>
         
 
         <View style={styles.reg}>
-          <Text style={{color:"gray"}}>Don't have an account? </Text>
-          <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-            <Text style={styles.link}>Register</Text>
+          <Text style={{color:"gray"}}>I have an account. </Text>
+          <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+            <Text style={styles.link}>Login</Text>
           </TouchableOpacity>
         </View>
       </View>
