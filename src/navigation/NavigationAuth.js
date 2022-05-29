@@ -12,7 +12,7 @@ import MainStack from './MainStack';
 import BottomTabNavigator from './BottomTabNavigator';
 
 // import SplashScreen from '../screens/SplashScreen';
-
+//
 const Stack = createNativeStackNavigator();
 
 const NavigationAuth = () => {
